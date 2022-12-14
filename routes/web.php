@@ -33,7 +33,13 @@ Route::middleware('auth')->group(function () {
 /// admin dashboard
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->name('admin.dashbord');
+
+    Route::get('/admin/logout',[AdminController::class, 'AdminDestroy'])->name('admin.logout');
 });
+/// admin login route
+Route::get('/admin/login',[AdminController::class, 'AdminLogin']);
+
+
 /// vendor dashboard
 Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::get('/vendor/dashboard',[VendorController::class, 'VendorDashbord'])->name('vendor.dashbord');
