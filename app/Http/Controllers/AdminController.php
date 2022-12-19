@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -42,16 +43,43 @@ class AdminController extends Controller
 
         if($request->file('photo')){
             $file = $request->file('photo');
+            @unlink(public_path('upload/admin_images/'.$data->photo));
             $file_name = date('YmdHi').$file->getClientOriginalName();
            $file->move(public_path('upload/admin_images'),$file_name);
            $data['photo'] = $file_name;
         }
         $data->save();
-        return redirect()->back();
+        $notification = array(
+            'message' => 'Admin profile updated successfully',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
         
         
     } //end method
-    
+    //admin profile end
+
+    public function AdminChangePassword(){
+        return view('admin.admin_chang_password');
+    }
+    public function AdminPasswordUpdate(Request $request){
+       $request->validate([
+            'old_password'=> 'required',
+            'new_password'=> 'required|confirmed',
+       ]);
+       // match the old password
+       if(!Hash::check($request->old_password, auth::user()->password)){
+        return back()->with("error", "old password doesn't match");
+       }
+       User::whereId(auth()->user()->id)->update([
+            'password'=> Hash::make($request->new_password)
+       ]);
+       $notification = array(
+        'message' => 'Admin Change Password successfully',
+        'alert-type' => 'success',
+    );
+       return back()->with($notification);
+    }
 
     
 }

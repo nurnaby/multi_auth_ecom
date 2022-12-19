@@ -38,14 +38,22 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/admin/profile',[AdminController::class, 'Admin_profile'])->name('admin.profile');
     Route::post('/admin/profile/store',[AdminController::class, 'Admin_profile_store'])->name('admin.protfolio.store');
+    // chang password
+    Route::get('/admin/change/password',[AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
+    Route::post('/admin/password/update',[AdminController::class, 'AdminPasswordUpdate'])->name('admin.password.update');
+
+
 });
 /// admin login route
 Route::get('/admin/login',[AdminController::class, 'AdminLogin']);
+// vendoer login route
+Route::get('/vendor/login',[VendorController::class, 'VendorLogin']);
 
 
 /// vendor dashboard
 Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::get('/vendor/dashboard',[VendorController::class, 'VendorDashbord'])->name('vendor.dashbord');
+    Route::get('/vendor/logout',[VendorController::class, 'VendorDestroy'])->name('vendor.logout');
 });
 
 
