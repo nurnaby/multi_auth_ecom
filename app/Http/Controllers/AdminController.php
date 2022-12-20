@@ -57,11 +57,13 @@ class AdminController extends Controller
         
         
     } //end method
+    
     //admin profile end
 
     public function AdminChangePassword(){
         return view('admin.admin_chang_password');
-    }
+    }//end method
+    
     public function AdminPasswordUpdate(Request $request){
        $request->validate([
             'old_password'=> 'required',

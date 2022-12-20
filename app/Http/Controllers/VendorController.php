@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class VendorController extends Controller
 {
@@ -14,6 +16,7 @@ class VendorController extends Controller
     public function VendorLogin(){
         return view('vendor.login');
     } //end method
+
     public function VendorDestroy(Request $request)
     {
         Auth::guard('web')->logout();
@@ -24,5 +27,61 @@ class VendorController extends Controller
 
         return redirect('/vendor/login');
     } //end method
+
+    public function VendorProfile(){
+        $id= Auth::user()->id;
+        $data['vendor_profile_info'] = User::find($id);
+        return view('vendor.profile_view',$data);
+    } //end method
+    
+    public function VendorProfileStore(Request $request){
+        $id= Auth::user()->id;
+        $data= User::find($id);
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->address = $request->address;
+        $data->vendor_join = $request->vendor_join;
+        $data->vendor_short_info = $request->vendor_short_info;
+
+        if($request->file('photo')){
+            $file = $request->file('photo');
+            @unlink(public_path('upload/vendor_images/'.$data->photo));
+            $file_name = date('YmdHi').$file->getClientOriginalName();
+           $file->move(public_path('upload/vendor_images'),$file_name);
+           $data['photo'] = $file_name;
+        }
+        $data->save();
+        $notification = array(
+            'message' => 'Vendor profile updated successfully',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+        
+        
+    }//end methode
+
+    public function VendorChangePassword(){
+        return view('vendor.vendor_chang_password');
+    }//end method
+
+    public function VendorPasswordUpdate(Request $request){
+        $request->validate([
+             'old_password'=> 'required',
+             'new_password'=> 'required|confirmed',
+        ]);
+        // match the old password
+        if(!Hash::check($request->old_password, auth::user()->password)){
+         return back()->with("error", "old password doesn't match");
+        }
+        User::whereId(auth()->user()->id)->update([
+             'password'=> Hash::make($request->new_password)
+        ]);
+        $notification = array(
+         'message' => 'Vendor Change Password successfully',
+         'alert-type' => 'success',
+     );
+        return back()->with($notification);
+     }
     
 }

@@ -18,7 +18,7 @@ use App\Http\Controllers\ProfileController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 Route::get('/dashboard', function () {
@@ -54,6 +54,12 @@ Route::get('/vendor/login',[VendorController::class, 'VendorLogin']);
 Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::get('/vendor/dashboard',[VendorController::class, 'VendorDashbord'])->name('vendor.dashbord');
     Route::get('/vendor/logout',[VendorController::class, 'VendorDestroy'])->name('vendor.logout');
+    Route::get('/vendor/profile',[VendorController::class, 'VendorProfile'])->name('vendor.profile');
+    Route::post('/vendor/profile/store',[VendorController::class, 'VendorProfileStore'])->name('vendor.protfolio.store');
+      // chang password
+      Route::get('/vendor/change/password',[VendorController::class, 'VendorChangePassword'])->name('vendor.change.password');
+      Route::post('/vendor/password/update',[VendorController::class, 'VendorPasswordUpdate'])->name('vendor.password.update');
+  
 });
 
 

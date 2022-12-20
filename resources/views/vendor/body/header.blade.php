@@ -356,12 +356,12 @@
             </div>
             @php
                 $id = Illuminate\Support\Facades\auth::user()->id;
-                $userdata = App\Models\User::find($id);
+                $vendordata = App\Models\User::find($id);
             @endphp
             <div class="user-box dropdown">
                 <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ !empty($userdata->photo) ? url('upload/admin_images/' . $userdata->photo) : url('upload/no_image.jpg') }}"
+                    <img src="{{ !empty($vendordata->photo) ? url('upload/vendor_images/' . $vendordata->photo) : url('upload/no_image.jpg') }}"
                         class="user-img" alt="user avatar">
                     <div class="user-info ps-3">
                         <p class="user-name mb-0">{{ Auth::user()->username }}</p>
@@ -369,10 +369,10 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="{{ route('admin.profile') }}"><i
+                    <li><a class="dropdown-item" href="{{ route('vendor.profile') }}"><i
                                 class="bx bx-user"></i><span>Profile</span></a>
                     </li>
-                    <li><a class="dropdown-item" href="{{ route('admin.change.password') }}"><i
+                    <li><a class="dropdown-item" href="{{ route('vendor.change.password') }}"><i
                                 class="bx bx-cog"></i><span>Chang Password</span></a>
                     </li>
                     <li><a class="dropdown-item" href="javascript:;"><i
