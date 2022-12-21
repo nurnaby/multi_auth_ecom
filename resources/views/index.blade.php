@@ -46,7 +46,12 @@
                                                 aria-selected="true"><i class="fi-rs-user mr-10"></i>Account details</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="page-login.html"><i
+                                            <a class="nav-link" id="change-password-tab" data-bs-toggle="tab"
+                                                href="#password-detail" role="tab" aria-controls="change-password"
+                                                aria-selected="true"><i class="fi-rs-user mr-10"></i>Change Password</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('user.logout') }}"><i
                                                     class="fi-rs-sign-out mr-10"></i>Logout</a>
                                         </li>
                                     </ul>
@@ -188,6 +193,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="tab-pane fade" id="account-detail" role="tabpanel"
                                         aria-labelledby="account-detail-tab">
                                         <div class="card">
@@ -247,6 +253,79 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    {{-- change password  --}}
+                                    <div class="tab-pane fade" id="password-detail" role="tabpanel"
+                                        aria-labelledby="change-password-tab">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Change Pasword</h5>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <form action="{{ route('user.password.update') }}" method="post">
+                                                    @csrf
+
+                                                    <div class="row">
+
+
+                                                        <div class="row mb-3">
+                                                            <div class="col-sm-3">
+                                                                <h6 class="mb-0">Old Password</h6>
+                                                            </div>
+                                                            <div class="col-sm-9 text-secondary">
+                                                                <input type="password"
+                                                                    class="form-control @error('old_password') is-invalid @enderror"
+                                                                    name="old_password" placeholder="Enter old password"
+                                                                    id="old_password" />
+                                                                @error('old_password')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-sm-3">
+                                                                <h6 class="mb-0">New Password</h6>
+                                                            </div>
+                                                            <div class="col-sm-9 text-secondary">
+                                                                <input type="password"
+                                                                    class="form-control @error('new_password') is-invalid @enderror"
+                                                                    name="new_password" placeholder="Enter new password"
+                                                                    id="new_password" />
+                                                                @error('new_password')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-sm-3">
+                                                                <h6 class="mb-0">Confirm New Password</h6>
+                                                            </div>
+                                                            <div class="col-sm-9 text-secondary">
+                                                                <input type="password" class="form-control"
+                                                                    name="new_password_confirmation"
+                                                                    placeholder="Enter Confimation password"
+                                                                    id="new_password_confirmation" />
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+
+
+                                                        <div class="col-md-12">
+                                                            <button type="submit"
+                                                                class="btn btn-fill-out submit font-weight-bold"
+                                                                name="submit" value="Submit">Save Change</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
