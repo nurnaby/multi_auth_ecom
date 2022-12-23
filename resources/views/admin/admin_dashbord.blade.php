@@ -22,10 +22,13 @@
     <link href="{{ asset('admin_backend/assets/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('admin_backend/assets/css/icons.css') }}" rel="stylesheet">
     <!-- Theme Style CSS -->
+
     <link rel="stylesheet" href="{{ asset('admin_backend/assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin_backend/assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin_backend/assets/css/header-colors.css') }}" />
-
+    <!-- Datatable Style CSS -->
+    <link href="{{ asset('admin_backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}"
+        rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <title>Rukada - Responsive Bootstrap 5 Admin Template</title>
 </head>
@@ -75,6 +78,15 @@
         });
     </script>
     <script src="{{ asset('admin_backend/assets/js/index.js') }}"></script>
+    <script src="{{ asset('admin_backend/assets/js/validate.min.js') }}"></script>
+    {{-- datatabel  --}}
+    <script src="{{ asset('admin_backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+
     <!--app JS-->
     <script src="{{ asset('admin_backend/assets/js/app.js') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

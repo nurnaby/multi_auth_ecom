@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Backend\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,9 +51,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // chang password
     Route::get('/admin/change/password',[AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
     Route::post('/admin/password/update',[AdminController::class, 'AdminPasswordUpdate'])->name('admin.password.update');
+   
+});
+  // Brand 
+Route::middleware(['auth', 'role:admin'])->group(function () {
 
+  Route::get('/all/brand',[BrandController::class, 'AllBrand'])->name('All.brand');
+  Route::get('/add/brand',[BrandController::class, 'AddBrand'])->name('add.brand');
+  Route::post('/store/brand',[BrandController::class, 'BrandStore'])->name('brand.store');
+  Route::get('brand/status/{type}/{id}',[BrandController::class, 'BrandStatus']);
+  Route::get('/edit/brand/{id}',[BrandController::class, 'EditBrand'])->name('edit.brand');
 
 });
+
+
+
 /// admin login route
 Route::get('/admin/login',[AdminController::class, 'AdminLogin']);
 // vendoer login route
