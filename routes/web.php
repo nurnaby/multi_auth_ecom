@@ -61,6 +61,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::post('/store/brand',[BrandController::class, 'BrandStore'])->name('brand.store');
   Route::get('brand/status/{type}/{id}',[BrandController::class, 'BrandStatus']);
   Route::get('/edit/brand/{id}',[BrandController::class, 'EditBrand'])->name('edit.brand');
+  Route::post('/update/brand',[BrandController::class, 'BrandUpdate'])->name('update.brand');
+  Route::get('/delete/brand/{id}',[BrandController::class, 'DeleteBrand'])->name('delete.brand');
+
+
 
 });
 
