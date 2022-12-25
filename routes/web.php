@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,9 +64,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::get('/edit/brand/{id}',[BrandController::class, 'EditBrand'])->name('edit.brand');
   Route::post('/update/brand',[BrandController::class, 'BrandUpdate'])->name('update.brand');
   Route::get('/delete/brand/{id}',[BrandController::class, 'DeleteBrand'])->name('delete.brand');
+});
+  // Category
+Route::middleware(['auth', 'role:admin'])->group(function () {
 
-
-
+  Route::get('/all/Category',[CategoryController::class, 'AllCategory'])->name('All.category');
+  Route::get('/add/category',[CategoryController::class, 'AddCateogry'])->name('add.category');
+  Route::put('/store/category',[CategoryController::class, 'CategoryStore'])->name('category.store');
+  Route::get('category/status/{type}/{id}',[CategoryController::class, 'CategoryStatus']);
+  Route::get('/edit/brand/{id}',[CategoryController::class, 'EditCategory'])->name('edit.category');
+  Route::post('/update/category',[CategoryController::class, 'CategoryUpdate'])->name('update.category');
+  Route::get('/delete/category/{id}',[CategoryController::class, 'DeleteCategory'])->name('delete.category');
 });
 
 

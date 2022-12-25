@@ -9,6 +9,7 @@ use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
 {
+    
     public function AllBrand(){
         $data['brandata'] = brand::get();
         return view('admin.brand.all_brand',$data);
