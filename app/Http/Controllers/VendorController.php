@@ -13,6 +13,38 @@ class VendorController extends Controller
         return view('vendor.index');
     } //end method
 
+    public function VendorRegister(){
+        return view('auth.vendor_register');
+    } //end method
+    
+    public function VendorStore(Request $request){
+        
+        $request->validate([
+            'name' => ['required','string','max:255'],
+            'email' =>['required','string'],
+            'password' =>['required','confirmed'],
+        ]);
+        User::insert([
+            'name' =>$request->name,
+            'username' =>$request->username,
+            'email' =>$request->email,
+            'phone' =>$request->phone,
+            'address' =>$request->address,
+            'vendor_join' =>$request->vendor_join,
+            'password' =>Hash::make($request->password),
+            'role'=>'vendor',
+            'status'=>'inactive',
+        ]);
+        $notification = array(
+                'message' => 'Vendor Registered Successfully',
+                'alert-type' => 'success'
+            );
+        return redirect()->route('vendor.login')->with($notification);
+
+       
+        
+    } //end method
+
     public function VendorLogin(){
         return view('vendor.login');
     } //end method

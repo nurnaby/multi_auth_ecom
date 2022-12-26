@@ -7,6 +7,7 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::post('/update/brand',[BrandController::class, 'BrandUpdate'])->name('update.brand');
   Route::get('/delete/brand/{id}',[BrandController::class, 'DeleteBrand'])->name('delete.brand');
 });
+
   // Category
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
@@ -72,9 +74,23 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::get('/add/category',[CategoryController::class, 'AddCateogry'])->name('add.category');
   Route::put('/store/category',[CategoryController::class, 'CategoryStore'])->name('category.store');
   Route::get('category/status/{type}/{id}',[CategoryController::class, 'CategoryStatus']);
-  Route::get('/edit/brand/{id}',[CategoryController::class, 'EditCategory'])->name('edit.category');
+  
+  Route::get('/edit/category/{id}',[CategoryController::class, 'EditCategory'])->name('edit.category');
+
+  
   Route::post('/update/category',[CategoryController::class, 'CategoryUpdate'])->name('update.category');
   Route::get('/delete/category/{id}',[CategoryController::class, 'DeleteCategory'])->name('delete.category');
+});
+  // Sub Category
+Route::middleware(['auth', 'role:admin'])->group(function () {
+
+  Route::get('/all/SubCategory',[SubCategoryController::class, 'AllSubCategory'])->name('All.SubCategory');
+  Route::get('/add/subcategory',[SubCategoryController::class, 'AddSubCateogry'])->name('add.subcategory');
+  Route::put('/store/subcategory',[SubCategoryController::class, 'SubCategoryStore'])->name('subcategory.store');
+  Route::get('subcategory/status/{type}/{id}',[SubCategoryController::class, 'SubCategoryStatus']);
+  Route::get('/edit/brand/{id}',[SubCategoryController::class, 'EditSubCategory'])->name('edit.subcategory');
+  Route::post('/update/subcategory',[SubCategoryController::class, 'SubCategoryUpdate'])->name('update.subcategory');
+  Route::get('/delete/subcategory/{id}',[SubCategoryController::class, 'DeleteSubCategory'])->name('delete.subcategory');
 });
 
 
@@ -82,7 +98,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 /// admin login route
 Route::get('/admin/login',[AdminController::class, 'AdminLogin']);
 // vendoer login route
-Route::get('/vendor/login',[VendorController::class, 'VendorLogin']);
+Route::get('/vendor/login',[VendorController::class, 'VendorLogin'])->name('vendor.login');
+Route::get('/vendor/register',[VendorController::class, 'VendorRegister'])->name('become.vendor');
+Route::post('/vendor/store',[VendorController::class, 'VendorStore'])->name('vendor.store');
 
 
 /// vendor dashboard

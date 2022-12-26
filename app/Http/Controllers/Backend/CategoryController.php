@@ -14,6 +14,7 @@ class CategoryController extends Controller
         $data['categorydata'] = Category::get();
         return view('admin.category.all_category',$data);
     }
+    
     public function AddCateogry(){
         return view('admin.category.add_category');
     } //End Methode

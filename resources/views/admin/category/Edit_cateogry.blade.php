@@ -19,7 +19,7 @@
         <!--end breadcrumb-->
         <div class="container">
             <div class="main-body">
-                <div class="row">category_name
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">

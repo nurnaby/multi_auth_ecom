@@ -4,13 +4,13 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Category</div>
+            <div class="breadcrumb-title pe-3">Sub Category</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Category</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Sub Category</li>
                     </ol>
                 </nav>
             </div>
@@ -23,19 +23,37 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('category.store') }}" id="myForm" method="post"
-                                    enctype="multipart/form-data">
-                                    @method('PUT')
+                                <form action="{{ route('update.subcategory') }}" id="myForm" method="post">
                                     @csrf
+                                    <input type="hidden" class="form-control" name="id"
+                                        value="{{ $subcategory->id }}">
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Category Name</h6>
+                                            <h6 class="mb-0">Sub Category Name</h6>
                                         </div>
                                         <div class=" form-group col-sm-9 text-secondary">
 
-                                            <input type="text" class="form-control" name="category_name"
-                                                placeholder="Enter your Category Nme">
+                                            <input type="text" class="form-control" name="subcategory_name"
+                                                value="{{ $subcategory->subcategory_name }}">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0"> Category Name</h6>
+                                        </div>
+                                        <div class=" form-group col-sm-9 text-secondary">
+                                            <select class="form-select mb-3" name="category_id"
+                                                aria-label="Default select example" required>
+                                                <option selected=""> Select Status</option>
+                                                @foreach ($category as $item)
+                                                    <option
+                                                        value="{{ $item->id }}"{{ $item->id == $subcategory->category_id ? 'selected' : '' }}>
+                                                        {{ $item->category_name }}</option>
+                                                @endforeach
+
+                                            </select>
+
                                         </div>
                                     </div>
 
@@ -47,33 +65,20 @@
                                             <select class="form-select mb-3" name="status"
                                                 aria-label="Default select example" required>
                                                 <option selected=""> Select Status</option>
-                                                <option value="1">Active</option>
-                                                <option value="0">Inactive</option>
+                                                <option value="1" @if ($subcategory->status == 1) selected @endif>
+                                                    Active</option>
+                                                <option value="0" @if ($subcategory->status == 0) selected @endif>
+                                                    Inactive</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Image</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="file" class="form-control" id="image"
-                                                name="category_image" />
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0"> </h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <img id="showImage" src="{{ url('upload/no_image.jpg') }}" alt="Admin"
-                                                style="width:100px; height: 100px;" />
-                                        </div>
-                                    </div>
+
+
                                     <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="submit" class="btn btn-primary px-4" value="Update  Profile" />
+                                            <input type="submit" class="btn btn-primary px-4"
+                                                value="Update Sub Cateogry" />
                                         </div>
                                     </div>
                                 </form>
@@ -92,10 +97,7 @@
         $(document).ready(function() {
             $('#myForm').validate({
                 rules: {
-                    category_name: {
-                        required: true,
-                    },
-                    category_image: {
+                    subcategory_name: {
                         required: true,
                     },
                     status: {
@@ -103,11 +105,8 @@
                     },
                 },
                 messages: {
-                    category_name: {
-                        required: 'Please Enter  Category Name',
-                    },
-                    category_image: {
-                        required: 'Please Enter  Category image',
+                    subcategory_name: {
+                        required: 'Please Enter Sub Category',
                     },
                     status: {
                         required: 'Please Enter Status',
@@ -124,18 +123,6 @@
                 unhighlight: function(element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                 },
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#image').change(function(e) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#showImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
             });
         });
     </script>
