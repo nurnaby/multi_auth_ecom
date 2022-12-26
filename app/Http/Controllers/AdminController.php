@@ -81,7 +81,23 @@ class AdminController extends Controller
         'alert-type' => 'success',
     );
        return back()->with($notification);
-    }
+    } //end method
+
+    public function InactiveVendor(){
+        $data['inactiveVendor'] = User::where('status','inactive')->where('role','vendor')->latest()->get();
+      
+        return view('admin.vendor.inactive_vendor',$data);
+     }
+    public function ActiveVendor(){
+        $data['activeVendor'] = User::where('status','active')->where('role','vendor')->latest()->get();
+      
+        return view('admin.vendor.active_vendor',$data);
+     } //End Method
+    public function InactiveVendorDetail($id){
+                $data['inactiveVendor'] = User::findOrFail($id);
+        return view('admin.vendor.inactive_vendor_detail',$data);
+     }
+    
 
     
 }

@@ -61,6 +61,20 @@
 
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                </div>
+                <div class="menu-title"> Vendor Manage</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('inactive.inactive') }}"><i class="bx bx-right-arrow-alt"></i>Inactive Vendor</a>
+                </li>
+                <li> <a href="{{ route('Active.vendor') }}"><i class="bx bx-right-arrow-alt"></i>Active Vendor</a>
+                </li>
+
+            </ul>
+        </li>
 
         <li>
             <a href="javascript:;" class="has-arrow">

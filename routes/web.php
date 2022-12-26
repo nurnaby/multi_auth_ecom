@@ -53,7 +53,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // chang password
     Route::get('/admin/change/password',[AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
     Route::post('/admin/password/update',[AdminController::class, 'AdminPasswordUpdate'])->name('admin.password.update');
-   
+
+    //vendor Active Inactive All Route
+    Route::get('/inactive/vendor',[AdminController::class, 'InactiveVendor'])->name('inactive.inactive');
+    Route::get('/active/vendor',[AdminController::class, 'ActiveVendor'])->name('Active.vendor');
+    Route::get('/inactive/vendor/{id}',[AdminController::class, 'InactiveVendorDetail'])->name('inactive.vendor.detail');
 });
   // Brand 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -112,7 +116,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
       // chang password
       Route::get('/vendor/change/password',[VendorController::class, 'VendorChangePassword'])->name('vendor.change.password');
       Route::post('/vendor/password/update',[VendorController::class, 'VendorPasswordUpdate'])->name('vendor.password.update');
-  
+     
 });
 
 

@@ -114,6 +114,10 @@ class VendorController extends Controller
          'alert-type' => 'success',
      );
         return back()->with($notification);
-     }
+     } //End Method
+
+    
+
+
     
 }
