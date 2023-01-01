@@ -1,5 +1,6 @@
 @extends('admin.admin_dashbord')
 @section('admin')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -15,14 +16,13 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.brand') }}" type="submit" class="btn btn-primary">Add Brand</a>
+                    <a href="{{ route('add.product') }}" type="submit" class="btn btn-primary">Add Product</a>
                     {{-- <button type="button"  >Add Brand</button> --}}
                 </div>
             </div>
         </div>
         <!--end breadcrumb-->
-        <h6 class="mb-0 text-uppercase">DataTable Example</h6>
-        <hr />
+
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -30,21 +30,31 @@
                         <thead>
                             <tr>
                                 <th>Sl</th>
-                                <th>Brand Name</th>
-                                <th>Brand Image</th>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Discription</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($brandata as $key => $item)
+                            @foreach ($allProduct as $key => $item)
                                 <tr>
                                     <td>{{ ++$key }}</td>
-                                    <td>{{ $item->brand_name }}</td>
                                     <td>
 
-                                        <img src="{{ asset($item->brand_image) }}" style="width: 70px; height:40px "
+                                        <img src="{{ asset($item->product_thumbnail) }}" style="width: 70px; height:40px "
                                             alt="">
                                     </td>
+                                    <td>{{ $item->product_name }}</td>
+                                    <td>{{ $item->selling_price }}</td>
+                                    <td>{{ $item->product_qty }}</td>
+                                    <td>{{ $item->short_descp }}</td>
+                                    <td>{{ $item->status }}</td>
+
+
                                     <td>
                                         @if ($item->status == 1)
                                             <a href="{{ url('brand/status/0') }}/{{ $item->id }}"
@@ -54,7 +64,7 @@
                                                 class="btn btn-warning">Inactive</a>
                                         @endif
 
-                                        <a href="{{ route('edit', $item->id) }}" class="btn btn-primary">Edit</a>
+                                        <a href="#" class="btn btn-primary">Edit</a>
                                         <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger"
                                             id="delete">Delete</a>
                                     </td>

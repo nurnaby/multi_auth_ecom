@@ -45,7 +45,8 @@
                                     <td>
 
 
-                                        <a href="{{ route('edit.subcategory', $item->id) }}" class="btn btn-primary">Vendor
+                                        <a href="{{ route('active.vendor.detail', $item->id) }}"
+                                            class="btn btn-primary">Vendor
                                             Details</a>
 
                                     </td>

@@ -8,9 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="icon" href="{{ asset('admin_backend/assets/images/favicon-32x32.png') }}" type="image/png" />
+
+
     <!--plugins-->
     <link href="{{ asset('admin_backend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin_backend/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
+    <link href="{{ asset('admin_backend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin_backend/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}"
         rel="stylesheet" />
     <link href="{{ asset('admin_backend/assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
@@ -30,7 +33,7 @@
     <link href="{{ asset('admin_backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}"
         rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-    <title>Rukada - Responsive Bootstrap 5 Admin Template</title>
+    <title>Multi Vendor econm </title>
 </head>
 
 <body>
@@ -63,6 +66,7 @@
     <!--plugins-->
     <script src="{{ asset('admin_backend/assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('admin_backend/assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+    <script src="{{ asset('admin_backend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
     <script src="{{ asset('admin_backend/assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('admin_backend/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('admin_backend/assets/plugins/chartjs/js/Chart.min.js') }}"></script>
@@ -114,8 +118,17 @@
         @endif
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+    <script src="{{ asset('admin_backend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
     <script src="{{ asset('admin_backend/assets/js/code.js') }}"></script>
+    <script src="{{ asset('admin_backend/assets/js/custom.js') }}"></script>
+    {{-- text Editor  --}}
+    <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js'
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script>
 </body>
 
 </html>

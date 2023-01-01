@@ -96,6 +96,37 @@ class AdminController extends Controller
     public function InactiveVendorDetail($id){
                 $data['inactiveVendor'] = User::findOrFail($id);
         return view('admin.vendor.inactive_vendor_detail',$data);
+     } //End Method
+
+    public function ActiveVendorDetail($id){
+                $data['activeVendor'] = User::findOrFail($id);
+        return view('admin.vendor.active_vendor_detail',$data);
+     } //End Method
+
+     public function InactiveVendorApprove(Request $request){
+                $id = $request->id;
+                User::findOrFail($id)->update([
+                    'status' => 'active'
+                ]);
+                $notification = array(
+                    'message' => 'Vendor Status Active successfully',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('Active.vendor')->with($notification);
+
+     } //End method
+
+     public function ActiveVendorApprove(Request $request){
+                $id = $request->id;
+                User::findOrFail($id)->update([
+                    'status' => 'inactive'
+                ]);
+                $notification = array(
+                    'message' => 'Vendor Status Inactive successfully',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('inactive.vendor')->with($notification);
+
      }
     
 

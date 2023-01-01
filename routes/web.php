@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 
@@ -55,9 +56,24 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/password/update',[AdminController::class, 'AdminPasswordUpdate'])->name('admin.password.update');
 
     //vendor Active Inactive All Route
-    Route::get('/inactive/vendor',[AdminController::class, 'InactiveVendor'])->name('inactive.inactive');
+    Route::get('/inactive/vendor',[AdminController::class, 'InactiveVendor'])->name('inactive.vendor');
     Route::get('/active/vendor',[AdminController::class, 'ActiveVendor'])->name('Active.vendor');
     Route::get('/inactive/vendor/{id}',[AdminController::class, 'InactiveVendorDetail'])->name('inactive.vendor.detail');
+    Route::get('/active/vendor/{id}',[AdminController::class, 'ActiveVendorDetail'])->name('active.vendor.detail');
+    Route::post('/inactive/vendor/approve',[AdminController::class, 'InactiveVendorApprove'])->name('inactive.vendor.approve');
+    Route::post('/active/vendor/approve',[AdminController::class, 'ActiveVendorApprove'])->name('active.vendor.approve');
+
+/// product route
+    Route::get('/all/product',[ProductController::class, 'AllProduct'])->name('All.product');
+    Route::get('/add/product',[ProductController::class, 'AddProduct'])->name('add.product');
+    Route::put('/store/product',[ProductController::class, 'ProductStore'])->name('product.store');
+    // Route::get('brand/status/{type}/{id}',[BrandController::class, 'BrandStatus']);
+    // Route::get('/edit/brand/{id}',[BrandController::class, 'EditBrand'])->name('edit.brand');
+    // Route::post('/update/brand',[BrandController::class, 'BrandUpdate'])->name('update.brand');
+    // Route::get('/delete/brand/{id}',[BrandController::class, 'DeleteBrand'])->name('delete.brand');
+
+
+
 });
   // Brand 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -65,7 +81,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::get('/all/brand',[BrandController::class, 'AllBrand'])->name('All.brand');
   Route::get('/add/brand',[BrandController::class, 'AddBrand'])->name('add.brand');
   Route::post('/store/brand',[BrandController::class, 'BrandStore'])->name('brand.store');
+
   Route::get('brand/status/{type}/{id}',[BrandController::class, 'BrandStatus']);
+
+  Route::get('edit-brand/{id}',[BrandController::class, 'EditBrand'])->name('edit');
   Route::get('/edit/brand/{id}',[BrandController::class, 'EditBrand'])->name('edit.brand');
   Route::post('/update/brand',[BrandController::class, 'BrandUpdate'])->name('update.brand');
   Route::get('/delete/brand/{id}',[BrandController::class, 'DeleteBrand'])->name('delete.brand');
@@ -94,7 +113,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::get('subcategory/status/{type}/{id}',[SubCategoryController::class, 'SubCategoryStatus']);
   Route::get('/edit/brand/{id}',[SubCategoryController::class, 'EditSubCategory'])->name('edit.subcategory');
   Route::post('/update/subcategory',[SubCategoryController::class, 'SubCategoryUpdate'])->name('update.subcategory');
+
   Route::get('/delete/subcategory/{id}',[SubCategoryController::class, 'DeleteSubCategory'])->name('delete.subcategory');
+  Route::get('/subcategory/ajax/{id}',[SubCategoryController::class, 'GetSubCategory']);
+
+
 });
 
 
