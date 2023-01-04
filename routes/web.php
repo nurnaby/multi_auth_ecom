@@ -67,9 +67,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/all/product',[ProductController::class, 'AllProduct'])->name('All.product');
     Route::get('/add/product',[ProductController::class, 'AddProduct'])->name('add.product');
     Route::put('/store/product',[ProductController::class, 'ProductStore'])->name('product.store');
+    Route::get('/edit/product/{id}',[ProductController::class, 'EditProduct'])->name('product.edit');
+    Route::put('/update/product',[ProductController::class, 'ProductUpdate'])->name('product.update');
+    Route::put('/update/product/main-image',[ProductController::class, 'MainImageUpdate'])->name('product.main_img.update');
+    Route::put('/update/product/multi-image',[ProductController::class, 'MultImageUpdate'])->name('product.multi_image.update');
     // Route::get('brand/status/{type}/{id}',[BrandController::class, 'BrandStatus']);
-    // Route::get('/edit/brand/{id}',[BrandController::class, 'EditBrand'])->name('edit.brand');
-    // Route::post('/update/brand',[BrandController::class, 'BrandUpdate'])->name('update.brand');
     // Route::get('/delete/brand/{id}',[BrandController::class, 'DeleteBrand'])->name('delete.brand');
 
 

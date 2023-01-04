@@ -4,13 +4,16 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Tables</div>
+            <div class="breadcrumb-title pe-3">All Product</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Data Table</li>
+                        <li class="breadcrumb-item active " aria-current="page">All Product</li>
+                        <h6 class="mr-5"><span class="badge rounded-pill bg-danger">{{ count($allProduct) }}</span></h6>
+
+
                     </ol>
                 </nav>
             </div>
@@ -34,7 +37,7 @@
                                 <th>Product Name</th>
                                 <th>Price</th>
                                 <th>Qty</th>
-                                <th>Discription</th>
+                                <th>Discount</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -51,22 +54,42 @@
                                     <td>{{ $item->product_name }}</td>
                                     <td>{{ $item->selling_price }}</td>
                                     <td>{{ $item->product_qty }}</td>
-                                    <td>{{ $item->short_descp }}</td>
-                                    <td>{{ $item->status }}</td>
+                                    <td>
+
+                                        @if ($item->discount_price == null)
+                                            <span class="badge rounded-pill bg-info">NO Discount</span>
+                                        @else
+                                            @php
+                                                $amount = $item->selling_price * $item->discount_price;
+                                                $discount = $amount / 100;
+                                                
+                                            @endphp
+                                            <span class="badge rounded-pill bg-danger">{{ round($discount) }}%</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($item->status == 1)
+                                            <span class="badge rounded-pill bg-success">Active</span>
+                                        @elseif($item->status == 0)
+                                            <span class="badge rounded-pill bg-danger">Inactive</span>
+                                        @endif
+
+                                    </td>
 
 
                                     <td>
-                                        @if ($item->status == 1)
-                                            <a href="{{ url('brand/status/0') }}/{{ $item->id }}"
-                                                class="btn btn-success">Active</a>
-                                        @elseif($item->status == 0)
-                                            <a href="{{ url('brand/status/1') }}/{{ $item->id }}"
-                                                class="btn btn-warning">Inactive</a>
-                                        @endif
 
-                                        <a href="#" class="btn btn-primary">Edit</a>
+
+                                        <a href="{{ route('product.edit', $item->id) }}" class="btn btn-info"
+                                            title="Edit-data"><i class="fa fa-pencil"></i></a>
+
                                         <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger"
-                                            id="delete">Delete</a>
+                                            id="delete" title="deleta-data"><i class="fa fa-trash"></i></a>
+
+                                        <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-warning"
+                                            id="delete" title="Details"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-primary"
+                                            id="delete" title="Inactive"><i class="fa fa-thumbs-down"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
