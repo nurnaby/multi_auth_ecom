@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,8 +72,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/update/product',[ProductController::class, 'ProductUpdate'])->name('product.update');
     Route::put('/update/product/main-image',[ProductController::class, 'MainImageUpdate'])->name('product.main_img.update');
     Route::put('/update/product/multi-image',[ProductController::class, 'MultImageUpdate'])->name('product.multi_image.update');
+    Route::get('/delete/product-multi-img/{id}',[ProductController::class, 'DeleteProductMultiImg'])->name('product.multi_img.delete');
+    Route::get('/product/inactive/{id}',[ProductController::class, 'ProductInactive'])->name('product.inactive');
+    Route::get('/product/active/{id}',[ProductController::class, 'ProductActive'])->name('product.active');
+    Route::get('/product/delete/{id}',[ProductController::class, 'ProductDelete'])->name('delete.product');
     // Route::get('brand/status/{type}/{id}',[BrandController::class, 'BrandStatus']);
-    // Route::get('/delete/brand/{id}',[BrandController::class, 'DeleteBrand'])->name('delete.brand');
 
 
 
@@ -125,15 +129,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 /// admin login route
-Route::get('/admin/login',[AdminController::class, 'AdminLogin']);
+Route::get('/admin/login',[AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
 // vendoer login route
-Route::get('/vendor/login',[VendorController::class, 'VendorLogin'])->name('vendor.login');
+Route::get('/vendor/login',[VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/vendor/register',[VendorController::class, 'VendorRegister'])->name('become.vendor');
 Route::post('/vendor/store',[VendorController::class, 'VendorStore'])->name('vendor.store');
 
 
 /// vendor dashboard
 Route::middleware(['auth', 'role:vendor'])->group(function () {
+
+Route::controller(VendorController::class)->gorup(function(){
+    Route::get('vendor/all/product', 'VendorAllProduct')->name('vendor.all.product');
+});
+
+
     Route::get('/vendor/dashboard',[VendorController::class, 'VendorDashbord'])->name('vendor.dashbord');
     Route::get('/vendor/logout',[VendorController::class, 'VendorDestroy'])->name('vendor.logout');
     Route::get('/vendor/profile',[VendorController::class, 'VendorProfile'])->name('vendor.profile');

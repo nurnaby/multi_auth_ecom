@@ -39,32 +39,32 @@ class ProductController extends Controller
         
         $product_id = product::insertGetId([
 
-            'brand_id' => $request->brand_id,
-            'category_id' => $request->category_id,
-            'subcategory_id' => $request->subcategory_id,
-            'product_name' => $request->product_name,
-            'product_slug' => strtolower(str_replace(' ','-',$request->product_name)),
+            'brand_id'          => $request->brand_id,
+            'category_id'       => $request->category_id,
+            'subcategory_id'    => $request->subcategory_id,
+            'product_name'      => $request->product_name,
+            'product_slug'      => strtolower(str_replace(' ','-',$request->product_name)),
 
-            'product_code' => $request->product_code,
-            'product_qty' => $request->product_qty,
-            'product_tage' => $request->product_tage,
-            'product_size' => $request->product_size,
-            'product_color' => $request->product_color,
+            'product_code'      => $request->product_code,
+            'product_qty'       => $request->product_qty,
+            'product_tage'      => $request->product_tage,
+            'product_size'      => $request->product_size,
+            'product_color'     => $request->product_color,
 
-            'selling_price' => $request->selling_price,
-            'discount_price' => $request->discount_price,
-            'short_descp' => $request->short_descp,
-            'long_descp' => $request->long_descp, 
+            'selling_price'     => $request->selling_price,
+            'discount_price'    => $request->discount_price,
+            'short_descp'       => $request->short_descp,
+            'long_descp'        => $request->long_descp, 
 
-            'hot_deals' => $request->hot_deals,
-            'feature' => $request->feature,
-            'special_offer' => $request->special_offer,
-            'special_deals' => $request->special_deals, 
+            'hot_deals'         => $request->hot_deals,
+            'feature'           => $request->feature,
+            'special_offer'     => $request->special_offer,
+            'special_deals'     => $request->special_deals, 
 
             'product_thumbnail' => $save_url,
-            'vendor_id' => $request->vendor_id,
-            'status' => 1,
-            'created_at' => Carbon::now(), 
+            'vendor_id'         => $request->vendor_id,
+            'status'            => 1,
+            'created_at'        => Carbon::now(), 
 
         ]);
         $images = $request->file('multi_image');
@@ -93,12 +93,12 @@ class ProductController extends Controller
     } //end methode
 
     public function EditProduct($id){
-        $data['multiImage']= multiImage::where('product_id',$id)->get();
-        $data['brand'] = brand::where('status','1')->latest()->get();
-        $data['category'] = Category::where('status','1')->latest()->get();
+        $data['multiImage']  = multiImage ::where('product_id',$id)->get();
+        $data['brand']       = brand      ::where('status','1')->latest()->get();
+        $data['category']    = Category   ::where('status','1')->latest()->get();
         $data['SubCategory'] = SubCategory::where('status','1')->latest()->get();
-        $data['vendors'] = User::where('status','active')->where('role','vendor')->latest()->get();
-        $data ['product'] = product::where('status',1)->latest()->find($id);
+        $data['vendors']     = User       ::where('status','active')->where('role','vendor')->latest()->get();
+        $data ['product']    = product    ::where('status',1)->latest()->find($id);
         return view('admin.product.Edit_product',$data);
     } //end methode
     public function ProductUpdate(Request $request){
@@ -168,7 +168,7 @@ class ProductController extends Controller
             'message'    => 'Main Image Update Successfully',
             'alert-type' => 'success'
         );
-        return redirect()->back()->with($notification); 
+        return redirect()->route('product.edit')->with($notification); 
 
 
     }//end methode
@@ -200,5 +200,53 @@ class ProductController extends Controller
         }
 
     }//end methode
+    // multi image delete 
+    public function DeleteProductMultiImg($id){
+        $oldimg = multiImage::find($id);
+        unlink($oldimg->photo_name);
+        $oldimg->delete();
+        $notification = array(
+            'message'    => 'Multi Image delete Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification); 
+    }//end methode
+    // product inactive 
+    public function ProductInactive($id){
+        product::findOrFail($id)->update(['status' => 0]);
+        $notification = array(
+            'message'    => 'product status Update Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }//end methode
+    // product active 
+    public function ProductActive($id){
+        product::findOrFail($id)->update(['status' => 1]);
+        $notification = array(
+            'message'    => 'product status Update Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }//end methode
+    public function ProductDelete($id){
+                $img = product::find($id);
+                unlink($img->product_thumbnail);
+                $img->delete();
+
+                $multi_img = multiImage::where('product_id',$id)->get();
+                foreach($multi_img as $img){
+                        unlink($img->photo_name);
+                        multiImage::where('product_id',$id)->delete();
+                }
+                $notification = array(
+                    'message'    => 'product delete Successfully',
+                    'alert-type' => 'success'
+                );
+                return redirect()->back()->with($notification);
+
+
+
+    }
 
 }

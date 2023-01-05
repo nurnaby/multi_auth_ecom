@@ -277,7 +277,8 @@
                                     </td>
                                     <td>
                                         <input type="submit" class="btn btn-primary px-4" value="Save Change" />
-                                        <a href="" class="btn btn-danger">Delete</a>
+                                        <a href="{{ route('product.multi_img.delete', $item->id) }}"
+                                            class="btn btn-danger" id="delete">Delete</a>
 
                                     </td>
                                 </tr>
