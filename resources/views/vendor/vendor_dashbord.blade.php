@@ -8,9 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="icon" href="{{ asset('admin_backend/assets/images/favicon-32x32.png') }}" type="image/png" />
+
+
     <!--plugins-->
     <link href="{{ asset('admin_backend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin_backend/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
+    <link href="{{ asset('admin_backend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin_backend/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}"
         rel="stylesheet" />
     <link href="{{ asset('admin_backend/assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
@@ -22,11 +25,17 @@
     <link href="{{ asset('admin_backend/assets/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('admin_backend/assets/css/icons.css') }}" rel="stylesheet">
     <!-- Theme Style CSS -->
+
     <link rel="stylesheet" href="{{ asset('admin_backend/assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin_backend/assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin_backend/assets/css/header-colors.css') }}" />
-
+    <!-- Datatable Style CSS -->
+    <link href="{{ asset('admin_backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}"
+        rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Vendor Dashboard</title>
 </head>
 
@@ -60,6 +69,7 @@
     <!--plugins-->
     <script src="{{ asset('admin_backend/assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('admin_backend/assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+    <script src="{{ asset('admin_backend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
     <script src="{{ asset('admin_backend/assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('admin_backend/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('admin_backend/assets/plugins/chartjs/js/Chart.min.js') }}"></script>
@@ -75,6 +85,15 @@
         });
     </script>
     <script src="{{ asset('admin_backend/assets/js/index.js') }}"></script>
+    <script src="{{ asset('admin_backend/assets/js/validate.min.js') }}"></script>
+    {{-- datatabel  --}}
+    <script src="{{ asset('admin_backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+
     <!--app JS-->
     <script src="{{ asset('admin_backend/assets/js/app.js') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -100,6 +119,18 @@
                     break;
             }
         @endif
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('admin_backend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
+    <script src="{{ asset('admin_backend/assets/js/code.js') }}"></script>
+    <script src="{{ asset('admin_backend/assets/js/custom.js') }}"></script>
+    {{-- text Editor  --}}
+    <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js'
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
     </script>
 </body>
 

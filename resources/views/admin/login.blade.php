@@ -34,6 +34,15 @@
                                 alt="" />
                         </div>
                         <div class="card">
+                            {{-- @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif --}}
                             <div class="card-body">
                                 <div class="border p-4 rounded">
                                     <div class="text-center">
@@ -49,10 +58,14 @@
                                         <form method="POST" class="row g-3" action="{{ route('login') }}">
                                             @csrf
                                             <div class="col-12">
-                                                <label for="inputEmailAddress" class="form-label">Email
+                                                <label for="inputEmailAddress"
+                                                    class="form-label  @error('email') is-invalid @enderror">Email
                                                     Address</label>
                                                 <input type="email" class="form-control" id="email"
-                                                    placeholder="Email Address" name="email" required>
+                                                    placeholder="Email Address" name="email" class="" required>
+                                                @error('email')
+                                                    <span class="alert alert-danger">{{ $message }}</span>
+                                                @enderror
 
                                             </div>
                                             <div class="col-12">

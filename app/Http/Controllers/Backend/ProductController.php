@@ -143,6 +143,8 @@ class ProductController extends Controller
 
 
     }//end methode
+
+    
     public function MainImageUpdate(Request $request){
         $validated = $request->validate([
             'product_thumbnail' => 'required',
@@ -230,15 +232,20 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     }//end methode
     public function ProductDelete($id){
-                $img = product::find($id);
-                unlink($img->product_thumbnail);
-                $img->delete();
+                $product = product::find($id);
+                unlink($product->product_thumbnail);
+               
+                $brand = brand::find($id);
+                $brand_img = $brand->brand_image;
+                unlink($brand_img);
 
                 $multi_img = multiImage::where('product_id',$id)->get();
                 foreach($multi_img as $img){
                         unlink($img->photo_name);
                         multiImage::where('product_id',$id)->delete();
                 }
+                $product->delete();
+
                 $notification = array(
                     'message'    => 'product delete Successfully',
                     'alert-type' => 'success'

@@ -5,11 +5,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
-use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\Backend\VendorProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -139,10 +140,13 @@ Route::post('/vendor/store',[VendorController::class, 'VendorStore'])->name('ven
 /// vendor dashboard
 Route::middleware(['auth', 'role:vendor'])->group(function () {
 
-Route::controller(VendorController::class)->gorup(function(){
-    Route::get('vendor/all/product', 'VendorAllProduct')->name('vendor.all.product');
-});
-
+    Route::controller(VendorProductController::class)->group(function(){
+      Route::get('vendor/all/product','VendorAllProduct')->name('vendor.all.product');
+      Route::get('vendor/add/product','VendorAddProduct')->name('vendor.add.product');
+      Route::put('/vendor/product/store','vendor_product_store')->name('vendor.product.store');
+      
+    });
+    Route::get('/vendor/subcategory/ajax/{id}',[VendorProductController::class, 'GetVendorSubCategory']);
 
     Route::get('/vendor/dashboard',[VendorController::class, 'VendorDashbord'])->name('vendor.dashbord');
     Route::get('/vendor/logout',[VendorController::class, 'VendorDestroy'])->name('vendor.logout');
