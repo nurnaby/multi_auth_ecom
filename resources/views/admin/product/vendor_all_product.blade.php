@@ -80,22 +80,23 @@
                                     <td>
 
 
-                                        <a href="{{ route('product.edit', $item->id) }}" class="btn btn-info"
+                                        <a href="{{ route('vendor.product.edit', $item->id) }}" class="btn btn-info"
                                             title="Edit-data"><i class="fa fa-pencil"></i></a>
 
-                                        <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger"
+                                        <a href="{{ route('delete.vendor.product', $item->id) }}" class="btn btn-danger"
                                             id="delete" title="deleta-data"><i class="fa fa-trash"></i></a>
 
-                                        <a href="{{ route('delete.product', $item->id) }}" class="btn btn-warning"
+                                        <a href="{{ route('delete.vendor.product', $item->id) }}" class="btn btn-warning"
                                             id="delete" title="Details"><i class="fa fa-eye"></i></a>
 
 
                                         @if ($item->status == 1)
-                                            <a href="{{ route('product.inactive', $item->id) }}" class="btn btn-primary"
-                                                title="Active"><i class="fa fa-thumbs-up"></i></a>
+                                            <a href="{{ route('vendor.product.inactive', $item->id) }}"
+                                                class="btn btn-primary" title="Active"><i class="fa fa-thumbs-up"></i></a>
                                         @elseif($item->status == 0)
-                                            <a href="{{ route('product.active', $item->id) }}" class="btn btn-primary"
-                                                title="Inactive"><i class="fa fa-thumbs-down"></i></a>
+                                            <a href="{{ route('vendor.product.active', $item->id) }}"
+                                                class="btn btn-primary" title="Inactive"><i
+                                                    class="fa fa-thumbs-down"></i></a>
                                         @endif
 
                                     </td>

@@ -83,7 +83,7 @@
                                         <a href="{{ route('product.edit', $item->id) }}" class="btn btn-info"
                                             title="Edit-data"><i class="fa fa-pencil"></i></a>
 
-                                        <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger"
+                                        <a href="{{ route('delete.product', $item->id) }}" class="btn btn-danger"
                                             id="delete" title="deleta-data"><i class="fa fa-trash"></i></a>
 
                                         <a href="{{ route('delete.product', $item->id) }}" class="btn btn-warning"

@@ -144,7 +144,15 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
       Route::get('vendor/all/product','VendorAllProduct')->name('vendor.all.product');
       Route::get('vendor/add/product','VendorAddProduct')->name('vendor.add.product');
       Route::put('/vendor/product/store','vendor_product_store')->name('vendor.product.store');
-      
+      Route::get('/vendor/product/edit/{id}','vendorProductEdit')->name('vendor.product.edit');
+      Route::put('/vendor/product/update','VendorProductUpdate')->name('vendor.product.update');
+      Route::put('/vendor/product/main','VendorProductMainimgUpdate')->name('vendor.product.main_img.update');
+      Route::put('/vendor/product/multi-image','VendorProductMultiimgUpdate')->name('vendor.product.multi_image.update');
+      Route::get('/vendor/product/multi-image/{id}','VendorProductMultiimgDelete')->name('vendor.product.multi_img.delete');
+      Route::get('/vendor/product/inactive/{id}', 'VendorProductInactive')->name('vendor.product.inactive');
+      Route::get('/vendor/product/active/{id}', 'VendorProductActive')->name('vendor.product.active');
+      Route::get('/vendor/product/delete/{id}', 'VendorProductDelete')->name('delete.vendor.product');
+
     });
     Route::get('/vendor/subcategory/ajax/{id}',[VendorProductController::class, 'GetVendorSubCategory']);
 
