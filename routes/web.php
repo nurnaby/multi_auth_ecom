@@ -7,6 +7,7 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -118,6 +119,17 @@ Route::controller(SliderController::class)->group(function(){
   Route::get('/edit/slider/{id}','EditSlider')->name('edit.slider');
   Route::put('/slider/updat','SliderUpdate')->name('slider.update');
   Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
+});
+// end slider route 
+// all banner route 
+Route::controller(BannerController::class)->group(function(){
+  Route::get('all/banner','AllBanner')->name('all.banner');
+
+  Route::get('/add/banner','AddBanner')->name('add.banner');
+  Route::put('/store/banner','BannerStore')->name('banner.store');
+  Route::get('/edit/banner/{id}','EditBanner')->name('edit.banner');
+  Route::put('/banner/updat','BannerUpdate')->name('banner.update');
+  Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
 });
 
 });

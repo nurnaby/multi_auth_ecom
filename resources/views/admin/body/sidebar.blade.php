@@ -98,9 +98,9 @@
                 <div class="menu-title"> Banner Manage</div>
             </a>
             <ul>
-                <li> <a href="{{ route('all.slider') }}"><i class="bx bx-right-arrow-alt"></i>All banner</a>
+                <li> <a href="{{ route('all.banner') }}"><i class="bx bx-right-arrow-alt"></i>All banner</a>
                 </li>
-                <li> <a href="{{ route('add.slider') }}"><i class="bx bx-right-arrow-alt"></i>Add banner</a>
+                <li> <a href="{{ route('add.banner') }}"><i class="bx bx-right-arrow-alt"></i>Add banner</a>
                 </li>
 
             </ul>
