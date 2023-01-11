@@ -18,6 +18,7 @@ class CategoryController extends Controller
     public function AddCateogry(){
         return view('admin.category.add_category');
     } //End Methode
+
     public function CategoryStore(Request $request){
         
         $image = $request->file('category_image');
@@ -37,7 +38,7 @@ class CategoryController extends Controller
         );
 
         return redirect()->route('All.category')->with($notification); 
-    }
+    } //end methode
     public function CategoryStatus(Request $request,$type,$id){
         $data = Category::find($id);
         $data->status = $type;
@@ -102,7 +103,7 @@ class CategoryController extends Controller
              }
         
        
-    }
+    } //End Methode
     public function DeleteCategory($id){
         
         $Category = Category::find($id);

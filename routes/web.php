@@ -7,6 +7,7 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -104,12 +105,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::get('/add/category',[CategoryController::class, 'AddCateogry'])->name('add.category');
   Route::put('/store/category',[CategoryController::class, 'CategoryStore'])->name('category.store');
   Route::get('category/status/{type}/{id}',[CategoryController::class, 'CategoryStatus']);
-  
   Route::get('/edit/category/{id}',[CategoryController::class, 'EditCategory'])->name('edit.category');
-
-  
   Route::post('/update/category',[CategoryController::class, 'CategoryUpdate'])->name('update.category');
   Route::get('/delete/category/{id}',[CategoryController::class, 'DeleteCategory'])->name('delete.category');
+// end category route 
+// all slide route 
+Route::controller(SliderController::class)->group(function(){
+  Route::get('all/slider','AllSlider')->name('all.slider');
+
+  Route::get('/add/slider','AddSlider')->name('add.slider');
+  Route::put('/store/slider','SliderStore')->name('slider.store');
+  Route::get('/edit/slider/{id}','EditSlider')->name('edit.slider');
+  Route::put('/slider/updat','SliderUpdate')->name('slider.update');
+  Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
+});
+
 });
   // Sub Category
 Route::middleware(['auth', 'role:admin'])->group(function () {
