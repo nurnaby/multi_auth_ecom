@@ -29,8 +29,8 @@
                         <thead>
                             <tr>
                                 <th>Sl</th>
-                                <th>Sub Category Name</th>
                                 <th> Category Name</th>
+                                <th>Sub Category Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -38,7 +38,7 @@
                             @foreach ($subcategorydata as $key => $item)
                                 <tr>
                                     <td>{{ ++$key }}</td>
-                                    <td>{{ $item['category']['category_name'] }}</td>
+                                    <td>{{ $item->category_id }}</td>
                                     <td>{{ $item->subcategory_name }}</td>
 
                                     <td>
@@ -61,14 +61,12 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                            <tr>
                                 <th>Sl</th>
-                                <th>Brand Name</th>
-                                <th>Brand Image</th>
-
-
-                                <th>
-                                    Action
-                                </th>
+                                <th>Sub Category Name</th>
+                                <th> Category Name</th>
+                                <th>Action</th>
+                            </tr>
                             </tr>
                         </tfoot>
 

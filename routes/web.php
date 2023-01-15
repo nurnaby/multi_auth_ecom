@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
 
@@ -24,11 +25,11 @@ use App\Http\Controllers\Backend\VendorProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/',[FrontendController::class,'FrontEndView'])->name('frontend');
 
-
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
     Route::post('/user/profile/store', [UserController::class, 'UserProfielStore'])->name('user.protfolio.store');
@@ -187,6 +188,10 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
       Route::post('/vendor/password/update',[VendorController::class, 'VendorPasswordUpdate'])->name('vendor.password.update');
      
 });
+
+
+
+
 
 
 

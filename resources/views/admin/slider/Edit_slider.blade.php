@@ -27,7 +27,7 @@
                                     enctype="multipart/form-data">
                                     @method('PUT')
                                     @csrf
-                                    <input type="text" name="slider_id" value="{{ $slider_data->id }}">
+                                    <input type="hidden" name="slider_id" value="{{ $slider_data->id }}">
                                     <input type="hidden" name="slider_img" value="{{ $slider_data->slider_img }}">
                                     <div class="row mb-3">
                                         <div class="col-sm-3">

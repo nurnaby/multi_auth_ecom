@@ -10,6 +10,10 @@
         </div>
         <div class="carausel-10-columns-cover position-relative">
             <div class="carausel-10-columns" id="carausel-10-columns">
+                {{-- @php
+                    
+                    $categories =App\Mod
+                @endphp --}}
                 <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                     <figure class="img-hover-scale overflow-hidden">
                         <a href="shop-grid-right.html"><img src="{{ asset('frontend/assets/imgs/shop/cat-13.png') }}"
@@ -18,7 +22,8 @@
                     <h6><a href="shop-grid-right.html">Cake & Milk</a></h6>
                     <span>26 items</span>
                 </div>
-                <div class="card-2 bg-10 wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
+
+                {{-- <div class="card-2 bg-10 wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
                     <figure class="img-hover-scale overflow-hidden">
                         <a href="shop-grid-right.html"><img src="{{ asset('frontend/assets/imgs/shop/cat-12.png') }}"
                                 alt="" /></a>
@@ -97,7 +102,9 @@
                     </figure>
                     <h6><a href="shop-grid-right.html">Headphone</a></h6>
                     <span>87 items</span>
-                </div>
+                </div> --}}
+
+
             </div>
         </div>
     </div>

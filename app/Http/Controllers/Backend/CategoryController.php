@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     
     public function AllCategory(){
-        $data['categorydata'] = Category::get();
+        $data['categorydata'] = Category::latest()->get();
         return view('admin.category.all_category',$data);
     }
     

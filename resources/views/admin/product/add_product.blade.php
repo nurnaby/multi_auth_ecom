@@ -232,6 +232,9 @@
                     product_thumbnail: {
                         required: true,
                     },
+                    multi_image: {
+                        required: true,
+                    },
                     short_descp: {
                         required: true,
                     },
@@ -260,6 +263,9 @@
                     },
                     product_thumbnail: {
                         required: 'Please Enter Product Thambnail Image',
+                    },
+                    multi_image: {
+                        required: 'Please Enter Product multi Image',
                     },
                     short_descp: {
                         required: 'Please Enter Short Description',
