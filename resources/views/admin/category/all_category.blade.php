@@ -30,8 +30,8 @@
                         <thead>
                             <tr>
                                 <th>Sl</th>
-                                <th>Brand Name</th>
-                                <th>Brand Image</th>
+                                <th>Category Name</th>
+                                <th>Category Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -65,13 +65,9 @@
                         <tfoot>
                             <tr>
                                 <th>Sl</th>
-                                <th>Brand Name</th>
-                                <th>Brand Image</th>
-
-
-                                <th>
-                                    Action
-                                </th>
+                                <th>Category Name</th>
+                                <th>Category Image</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
 

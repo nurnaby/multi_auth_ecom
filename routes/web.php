@@ -157,6 +157,7 @@ Route::get('/admin/login',[AdminController::class, 'AdminLogin'])->middleware(Re
 // vendoer login route
 Route::get('/vendor/login',[VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/vendor/register',[VendorController::class, 'VendorRegister'])->name('become.vendor');
+
 Route::post('/vendor/store',[VendorController::class, 'VendorStore'])->name('vendor.store');
 
 

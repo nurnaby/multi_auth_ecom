@@ -25,7 +25,7 @@
                                     <p class="mb-30">Already have an account? <a href="{{ route('login') }}">Login</a>
                                     </p>
                                 </div>
-                                <form method="POST" action="{{ route('vendor.store') }}">
+                                <form method="POST" action="#">
                                     @csrf
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
