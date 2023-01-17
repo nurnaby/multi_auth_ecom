@@ -39,7 +39,7 @@
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Product tage</label>
                                         <input type="text" name="product_tage" class="form-control" data-role="tagsinput"
-                                            value="jQuery,Script,Net">
+                                            value="New Product,Top product">
                                     </div>
                                     <div class="mb-3">
                                         <label for="inputProductTitle" class="form-label">Product Size</label>

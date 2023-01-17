@@ -38,7 +38,7 @@
                             @foreach ($subcategorydata as $key => $item)
                                 <tr>
                                     <td>{{ ++$key }}</td>
-                                    <td>{{ $item->category_id }}</td>
+                                    <td>{{ $item['category']['category_name'] }}</td>
                                     <td>{{ $item->subcategory_name }}</td>
 
                                     <td>

@@ -223,6 +223,14 @@
                             alt="logo" /></a>
                 </div>
 
+                @php
+                    $categoryies = App\Models\Category::OrderBy('category_name', 'ASC')
+                        ->limit(6)
+                        ->get();
+                    
+                @endphp
+
+
                 <div class="header-nav d-none d-lg-flex">
                     <div class="main-categori-wrap d-none d-lg-block">
                         <a class="categories-button-active" href="#">
@@ -289,6 +297,9 @@
                                     more...</span></div>
                         </div>
                     </div>
+
+
+
                     <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                         <nav>
                             <ul>

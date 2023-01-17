@@ -14,6 +14,7 @@ class VendorController extends Controller
     } //end method
 
     public function VendorRegister(){
+        // return "vendor page";
         return view('auth.vendor_register');
     } //end method
     
