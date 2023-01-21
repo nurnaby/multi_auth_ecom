@@ -1,4 +1,4 @@
-a<section class="popular-categories section-padding">
+<section class="popular-categories section-padding">
     <div class="container wow animate__animated animate__fadeIn">
         <div class="section-title">
             <div class="title">
