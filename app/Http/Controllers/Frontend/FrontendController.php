@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\User;
 use App\Models\Banner;
 use App\Models\Slider;
 use App\Models\product;
@@ -17,7 +18,7 @@ class FrontendController extends Controller
         $data['sliders'] = Slider::OrderBy('slider_title','ASC')->get();
         $data['banners'] = Banner::OrderBy('banner_title','ASC')->limit(3)->get();
         $data['products'] = product::where('status',1)->OrderBy('id','ASC')->limit(5)->get();
-        $data['products'] = product::where('feature',1)->OrderBy('id','ASC')->limit(4)->get();
+        $data['products'] = product::where('feature',1)->OrderBy('id','DESC')->limit(5)->get();
         $skipCategory = Category::skip(0)->first();
         $data['CatProduct'] = product::where('status',1)->where('category_id',$skipCategory->id)->orderBy('id','DESC')->limit(5)->get();//category table first product dispaly
 
@@ -28,6 +29,7 @@ class FrontendController extends Controller
         $data['specialDealProduct'] = product::where('status',1)->where('special_offer',1)->orderBy('id','DESC')->limit(3)->get();//hot deal product dispaly
         $data['ResentProduct'] = product::where('status',1)->orderBy('id','DESC')->limit(3)->get();//Resent  product dispaly
         $data['SpecialDealProduct'] = product::where('status',1)->where('special_deals',1)->orderBy('id','DESC')->limit(3)->get();//hot deal product dispaly
+        $data['allvendor'] = User::where('status',1)->where('role','vendor')->orderBy('id','DESC')->limit(4)->get();//all vendor dispaly
 
        
         return view('frontend.index',compact('skipCategory_1','skipCategory'),$data);

@@ -10,46 +10,54 @@
 
 
     <div class="row vendor-grid">
-        <div class="col-lg-3 col-md-6 col-12 col-sm-6 justify-content-center">
-            <div class="vendor-wrap mb-40">
-                <div class="vendor-img-action-wrap">
-                    <div class="vendor-img">
-                        <a href="vendor-details-1.html">
-                            <img class="default-img" src="assets/imgs/vendor/vendor-1.png" alt="" />
-                        </a>
-                    </div>
-                    <div class="product-badges product-badges-position product-badges-mrg">
-                        <span class="hot">Mall</span>
-                    </div>
-                </div>
-                <div class="vendor-content-wrap">
-                    <div class="d-flex justify-content-between align-items-end mb-30">
-                        <div>
-                            <div class="product-category">
-                                <span class="text-muted">Since 2012</span>
-                            </div>
-                            <h4 class="mb-5"><a href="vendor-details-1.html">Nature Food</a></h4>
-                            <div class="product-rate-cover">
-
-                                <span class="font-small total-product">380 products</span>
-                            </div>
+        @forelse ($allvendor as $item)
+            <div class="col-lg-3 col-md-6 col-12 col-sm-6 justify-content-center">
+                <div class="vendor-wrap mb-40">
+                    <div class="vendor-img-action-wrap">
+                        <div class="vendor-img">
+                            <a href="vendor-details-1.html">
+                                <img class="default-img"
+                                    src="{{ !empty($item->photo) ? url('upload/vendor_images/' . $item->photo) : url('upload/no_image.jpg') }}"
+                                    alt="" />
+                            </a>
                         </div>
-
+                        <div class="product-badges product-badges-position product-badges-mrg">
+                            <span class="hot">Mall</span>
+                        </div>
                     </div>
-                    <div class="vendor-info mb-30">
-                        <ul class="contact-infor text-muted">
+                    <div class="vendor-content-wrap">
+                        <div class="d-flex justify-content-between align-items-end mb-30">
+                            <div>
+                                <div class="product-category">
+                                    <span class="text-muted">{{ $item->vendor_join }}</span>
+                                </div>
+                                <h4 class="mb-5"><a href="vendor-details-1.html">{{ $item->username }}</a></h4>
+                                @php
+                                    $product = App\Models\product::where('vendor_id', $item->id)->get();
+                                @endphp
+                                <div class="product-rate-cover">
 
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Call
-                                    Us:</strong><span>(+91) -
-                                    540-025-124553</span></li>
-                        </ul>
+                                    <span class="font-small total-product">{{ count($product) }} products</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="vendor-info mb-30">
+                            <ul class="contact-infor text-muted">
+
+                                <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Call
+                                        Us:</strong><span>{{ $item->phone }}</span></li>
+                            </ul>
+                        </div>
+                        <a href="vendor-details-1.html" class="btn btn-xs">Visit Store <i
+                                class="fi-rs-arrow-small-right"></i></a>
                     </div>
-                    <a href="vendor-details-1.html" class="btn btn-xs">Visit Store <i
-                            class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
-        </div>
-        <!--end vendor card-->
+        @empty
+            <h6 class="text-denger">Vendor Nont Found</h6>
+        @endforelse
+        {{-- <!--end vendor card-->
         <div class="col-lg-3 col-md-6 col-12 col-sm-6 justify-content-center">
             <div class="vendor-wrap mb-40">
                 <div class="vendor-img-action-wrap">
@@ -169,7 +177,7 @@
                 </div>
             </div>
         </div>
-        <!--end vendor card-->
+        <!--end vendor card--> --}}
 
     </div>
 </div>

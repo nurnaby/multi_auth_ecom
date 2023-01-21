@@ -135,7 +135,7 @@
                                             <select class="form-select" name="vendor_id" id="inputVendor">
                                                 <option></option>
                                                 @foreach ($vendors as $item)
-                                                    <option value="1">{{ $item->username }}</option>
+                                                    <option value="{{ $item->id }}">{{ $item->username }}</option>
                                                 @endforeach
 
                                             </select>

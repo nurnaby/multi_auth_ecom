@@ -249,26 +249,6 @@
 
 </section>
 <!--End Computer Category -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <section class="section-padding mb-30">
     <div class="container">
         <div class="row">
@@ -451,14 +431,6 @@
     </div>
 </section>
 <!--End 4 columns-->
-
-
-
-
-
-
-
-
 
 <!--Vendor List -->
 @include('frontend.home.home_vendor_list')

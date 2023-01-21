@@ -73,13 +73,14 @@ class VendorController extends Controller
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
+        // $data->photo = $request->photo;
         $data->address = $request->address;
         $data->vendor_join = $request->vendor_join;
         $data->vendor_short_info = $request->vendor_short_info;
 
         if($request->file('photo')){
             $file = $request->file('photo');
-            unlink(public_path('upload/vendor_images/'.$data->photo));
+            @unlink(public_path('upload/vendor_images/'.$data->photo));
             $file_name = date('YmdHi').$file->getClientOriginalName();
            $file->move(public_path('upload/vendor_images'),$file_name);
            $data['photo'] = $file_name;
