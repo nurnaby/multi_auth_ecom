@@ -194,6 +194,10 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 /// Frontend Product Details All Route
 
 Route::get('product/details/{id}/{slug}',[IndexController::class, 'ProductDetails']);
+//vendor details route
+Route::get('vendor/details/{id}',[IndexController::class, 'VendorDetails'])->name('vendor.details');
+//vendor list route
+Route::get('vendor/list',[IndexController::class, 'VendorList'])->name('vendor.all');
 
 
 

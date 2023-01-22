@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\User;
 use App\Models\product;
 use App\Models\Category;
 use App\Models\multiImage;
@@ -24,5 +25,16 @@ class IndexController extends Controller
         
 
         return view('frontend.product.product_details',$data);
+    }
+    // Vendor Details
+    public function VendorDetails($id){
+        $vendor = User::find($id);
+        $data['vendorProduct'] = product::where('vendor_id',$vendor->id)->get();
+        return view('frontend.vendor.vendor_datails',compact('vendor'),$data);
+    } //end methord
+    // vendor List
+    public function VendorList(){
+        $data['vendor'] = User::where('status','active')->where('role','vendor')->get();
+        return view('frontend.vendor.vendor_all',$data);
     }
 }
