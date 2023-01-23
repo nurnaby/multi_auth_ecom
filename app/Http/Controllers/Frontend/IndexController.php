@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\product;
 use App\Models\Category;
 use App\Models\multiImage;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -36,5 +37,22 @@ class IndexController extends Controller
     public function VendorList(){
         $data['vendor'] = User::where('status','active')->where('role','vendor')->get();
         return view('frontend.vendor.vendor_all',$data);
+    }//end methode
+
+    public function CatwidseProduct($id,$slug){
+        $data['products'] = product::where('status',1)->where('category_id',$id)->orderBy('id','DESC')->get();
+        $data['categories'] = Category::where('status',1)->orderBy('category_name','ASC')->get();
+        $breadCate = Category::where('status',1)->where('id',$id)->first(); //get category 
+        $data['newProduct'] = product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.product.cat_product',compact('breadCate'),$data);
+
+    }
+    public function SubCatwidseProduct($id,$slug){
+        $data['products'] = product::where('status',1)->where('subcategory_id',$id)->orderBy('id','DESC')->get();
+        $data['categories'] = Category::where('status',1)->orderBy('category_name','ASC')->get();
+        $breadCate = SubCategory::where('status',1)->where('id',$id)->first(); //get category 
+        $data['newProduct'] = product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.product.Subcat_product',compact('breadCate'),$data);
+
     }
 }

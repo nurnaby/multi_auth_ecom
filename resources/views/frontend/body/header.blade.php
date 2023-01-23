@@ -225,7 +225,7 @@
 
                 @php
                     $categoryies = App\Models\Category::OrderBy('category_name', 'ASC')
-                        ->limit(6)
+                        ->limit(5)
                         ->get();
                     
                 @endphp
@@ -305,15 +305,16 @@
                             <ul>
 
                                 <li>
-                                    <a class="active" href="index.html">Home </a>
+                                    <a class="active" href="{{ url('/') }}">Home </a>
 
                                 </li>
 
 
                                 @foreach ($categoryies as $item)
                                     <li>
-                                        <a href="#">{{ $item->category_name }} <i
-                                                class="fi-rs-angle-down"></i></a>
+                                        <a
+                                            href="{{ url('product/category/' . $item->id . '/' . $item->category_slug) }}">{{ $item->category_name }}
+                                            <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             @php
                                                 $subCateogries = App\Models\subCategory::where('category_id', $item->id)
@@ -323,7 +324,7 @@
 
                                             @foreach ($subCateogries as $subCatItem)
                                                 <li><a
-                                                        href="vendors-grid.html">{{ $subCatItem->subcategory_name }}</a>
+                                                        href="{{ url('product/subcateogry/' . $subCatItem->id . '/' . $subCatItem->subcategory_slug) }}">{{ $subCatItem->subcategory_name }}</a>
                                                 </li>
                                             @endforeach
 

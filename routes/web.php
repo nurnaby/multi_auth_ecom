@@ -198,6 +198,11 @@ Route::get('product/details/{id}/{slug}',[IndexController::class, 'ProductDetail
 Route::get('vendor/details/{id}',[IndexController::class, 'VendorDetails'])->name('vendor.details');
 //vendor list route
 Route::get('vendor/list',[IndexController::class, 'VendorList'])->name('vendor.all');
+// catwies product 
+Route::get('product/category/{id}/{slug}',[IndexController::class, 'CatwidseProduct']);
+// Subcatwies product 
+Route::get('product/subcateogry/{id}/{slug}',[IndexController::class, 'SubCatwidseProduct']);
+
 
 
 

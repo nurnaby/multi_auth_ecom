@@ -29,7 +29,7 @@ class CategoryController extends Controller
         Category::insert([
             'category_name'  => $request->category_name,
             'status'         => $request->status,
-            'category_slug'  => strtolower(str_replace(' ', '-',$request->brand_name)),
+            'category_slug'  => strtolower(str_replace(' ', '-',$request->category_name)),
             'category_image' => $save_url, 
         ]);
         $notification = array(
@@ -91,7 +91,7 @@ class CategoryController extends Controller
         Category::findOrFail($category_id)->update([
             'category_name'  => $request->category_name,
             'status'         => $request->status,
-            'category_slug'  => strtolower(str_replace(' ', '-',$request->brand_name)), 
+            'category_slug'  => strtolower(str_replace(' ', '-',$request->category_name)), 
         ]);
         $notification = array(
             'message' => 'Category Update Successfully',
