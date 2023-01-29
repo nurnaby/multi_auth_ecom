@@ -41,7 +41,8 @@
                                             @endphp
                                             <div class="product-action-1">
                                                 <a aria-label="Quick view" class="action-btn small hover-up"
-                                                    data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i
+                                                    data-bs-toggle="modal" id="{{ $item->id }}"
+                                                    onclick="productView(this.id)" data-bs-target="#quickViewModal"> <i
                                                         class="fi-rs-eye"></i></a>
                                                 <a aria-label="Add To Wishlist" class="action-btn small hover-up"
                                                     href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>

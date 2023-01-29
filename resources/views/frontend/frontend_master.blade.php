@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') </title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
@@ -89,6 +90,7 @@
     <script src="{{ asset('frontend/assets/js/plugins/jquery.elevatezoom.js') }}"></script>
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
+    <script src="{{ asset('frontend/assets/js/custom.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
     <!-- toaster  JS -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -114,6 +116,44 @@
             }
         @endif
     </script>
+
+    {{-- <script type="text/javascript">
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('centent')
+            }
+        })
+
+        function productView(id) {
+            // alert($id);
+            $.ajax({
+                type: 'GET',
+                url: '/product/view/modal/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    // console.log(data); 
+                    $('#pname').text(data.product.product_name);
+                    // $('#pprice').text(data.product.selling_price);
+                    $('#pcategory').text(data.product.category.category_name);
+                    $('#pbarnd').text(data.product.barnd.brand_name);
+                    $('#pcode').text(data.product.product_code);
+                    $('#pimage').attr('src', '/' + data.product.product_thumbnail);
+                    // product price 
+                    if (data.product.discount_price == null) {
+                        $('#pprice').text('');
+                        $('#oldprice').text('');
+                        $('#pprice').text(data.product.selling_price);
+                    } else {
+                        $('#pprice').text((data.product.selling_price) - (data.product.discount_price));
+                        $('#oldprice').text(data.product.selling_price);
+
+                    } //end else
+                }
+            })
+        }
+    </script> --}}
+
 </body>
 
 </html>

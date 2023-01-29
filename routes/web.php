@@ -202,6 +202,8 @@ Route::get('vendor/list',[IndexController::class, 'VendorList'])->name('vendor.a
 Route::get('product/category/{id}/{slug}',[IndexController::class, 'CatwidseProduct']);
 // Subcatwies product 
 Route::get('product/subcateogry/{id}/{slug}',[IndexController::class, 'SubCatwidseProduct']);
+//product view modal with ajax
+Route::get('/product/view/modal/{id}',[IndexController::class, 'ProductViewAjax']);
 
 
 

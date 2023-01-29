@@ -54,5 +54,20 @@ class IndexController extends Controller
         $data['newProduct'] = product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         return view('frontend.product.Subcat_product',compact('breadCate'),$data);
 
+    }//end methode
+
+
+    public function ProductViewAjax($id){
+        $product = product::with('category','barnd')->find($id);
+        $color = $product->product_color;
+        $product_color = explode(',',$color);
+        $size = $product->product_size;
+        $product_size = explode(',',$size);
+
+        return response()->json(array(
+            'product' =>$product,
+            'color' =>$product_color,
+            'size' =>$product_size,
+        ));
     }
 }
