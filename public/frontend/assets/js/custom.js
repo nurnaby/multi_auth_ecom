@@ -1,9 +1,9 @@
 $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('centent')
-    }
-})
-
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+        }
+    })
+    //product view start
 function productView(id) {
     // alert($id);
     $.ajax({
@@ -18,6 +18,8 @@ function productView(id) {
             $('#pbarnd').text(data.product.barnd.brand_name);
             $('#pcode').text(data.product.product_code);
             $('#pimage').attr('src', '/' + data.product.product_thumbnail);
+            $('#product_id').val(id);
+            $('#qty').val(1);
             // product price 
             if (data.product.discount_price == null) {
                 $('#pprice').text('');
@@ -62,6 +64,29 @@ function productView(id) {
             })
 
 
+        }
+    })
+}
+// product view end
+
+function addTocart() {
+    var product_naem = $('#pname').text();
+    var id = $('#product_id').val();
+    var size = $('#size option:selected').text();
+    var color = $('#color option:selected').text();
+    var quantity = $('#qty').val();
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        data: {
+            product_naem: product_naem,
+            size: size,
+            color: color,
+            quantity: quantity
+        },
+        url: "/cart/data/store/" + id,
+        success: function(data) {
+            console.log(data);
         }
     })
 }
