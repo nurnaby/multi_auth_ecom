@@ -94,6 +94,7 @@
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
     <!-- toaster  JS -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}"

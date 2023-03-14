@@ -205,6 +205,20 @@ Route::get('product/category/{id}/{slug}',[IndexController::class, 'CatwidseProd
 Route::get('product/subcateogry/{id}/{slug}',[IndexController::class, 'SubCatwidseProduct']);
 //product view modal with ajax
 Route::get('/product/view/modal/{id}',[IndexController::class, 'ProductViewAjax']);
+// mini cart 
+Route::get('/product/mini/cart',[CartController::class, 'minicartViewAjax']);
+//add cart with ajax
+
+// Route::controller(SliderController::class)->group(function(){
+// Route::controller(CartController::class)->gorup(function(){
+
+// });
+Route::get('load-cart-data',[CartController::class, 'cartloadbyajax']);
+Route::post('add-to-cart',[CartController::class, 'AddTocart']);
+Route::post('update-to-cart',[CartController::class, 'UpdateCart']);
+Route::DELETE('delete-from-cart',[CartController::class, 'DeleteCart']);
+Route::get('cart',[CartController::class, 'index']);
+
 
 
 

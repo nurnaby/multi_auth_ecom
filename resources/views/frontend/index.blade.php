@@ -114,7 +114,7 @@
 
                                         <div class="add-cart">
                                             <a class="add" href="shop-cart.html"><i
-                                                    class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                    class="fi-rs-shopping-cart mr-5"></i>Add pr </a>
                                         </div>
                                     </div>
                                 </div>

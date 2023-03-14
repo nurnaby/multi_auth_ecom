@@ -1,7 +1,7 @@
 <section class="product-tabs section-padding position-relative">
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
-            <h3> New Products </h3>
+            <h3> News Products </h3>
             <ul class="nav nav-tabs links" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one"
@@ -103,8 +103,10 @@
                                         @endif
 
                                         <div class="add-cart">
-                                            <a class="add" href="shop-cart.html"><i
-                                                    class="fi-rs-shopping-cart mr-5"></i>Add </a>
+
+                                            <a class="add add-to-cart-btn" href="javascript:void(0)"><i
+                                                    class="fi-rs-shopping-cart mr-5 "></i>Add
+                                                new </a>
                                         </div>
                                     </div>
                                 </div>
@@ -208,7 +210,7 @@
 
                                             <div class="add-cart">
                                                 <a class="add" href="shop-cart.html"><i
-                                                        class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                        class="fi-rs-shopping-cart mr-5"></i>home product</a>
                                             </div>
                                         </div>
                                     </div>

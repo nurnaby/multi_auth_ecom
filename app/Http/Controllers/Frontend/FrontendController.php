@@ -9,6 +9,8 @@ use App\Models\product;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+
 use App\Http\Controllers\Controller;
 
 class FrontendController extends Controller
@@ -31,7 +33,9 @@ class FrontendController extends Controller
         $data['SpecialDealProduct'] = product::where('status',1)->where('special_deals',1)->orderBy('id','DESC')->limit(3)->get();//hot deal product dispaly
         $data['allvendor'] = User::where('status',1)->where('role','vendor')->orderBy('id','DESC')->limit(4)->get();//all vendor dispaly
 
-       
+        $cookie_data = stripslashes(Cookie::get('shopping_cart'));
+        $data['cart_data'] = json_decode($cookie_data, true);
+        
         return view('frontend.index',compact('skipCategory_1','skipCategory'),$data);
     }
 }
