@@ -170,7 +170,7 @@ function cartload() {
 $(document).ready(function() {
     $('.add-to-cart-btn').click(function(e) {
         e.preventDefault();
-        alert("i am hear");
+        // alert("i am hear");
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
