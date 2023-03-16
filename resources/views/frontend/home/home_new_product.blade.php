@@ -104,9 +104,11 @@
 
                                         <div class="add-cart">
 
-                                            <a class="add add-to-cart-btn" href="javascript:void(0)"><i
-                                                    class="fi-rs-shopping-cart mr-5 "></i>Add
-                                                new </a>
+                                            <a class="add add-to-cart-btn" data-bs-toggle="modal"
+                                                data-bs-target="#quickViewModal" id="{{ $item->id }}"
+                                                onclick="productView(this.id)" href="javascript:void(0)"><i
+                                                    class="fi-rs-shopping-cart mr-5 "></i>Adds
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

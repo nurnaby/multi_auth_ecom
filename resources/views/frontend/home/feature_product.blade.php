@@ -86,8 +86,10 @@
                                                 </div>
                                                 <span class="font-xs text-heading"> Sold: 90/120</span>
                                             </div>
-                                            <a href="shop-cart.html" class="btn w-100 hover-up"><i
-                                                    class="fi-rs-shopping-cart mr-5"></i>fe To Cart </a>
+                                            <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                data-bs-target="#quickViewModal" id="{{ $item->id }}"
+                                                onclick="productView(this.id)" class="btn w-100 hover-up"><i
+                                                    class="fi-rs-shopping-cart mr-5"></i>Add To Cart </a>
                                         </div>
                                     </div>
                                 @endforeach
