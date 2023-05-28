@@ -7,10 +7,11 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
-use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -112,6 +113,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::get('/edit/category/{id}',[CategoryController::class, 'EditCategory'])->name('edit.category');
   Route::post('/update/category',[CategoryController::class, 'CategoryUpdate'])->name('update.category');
   Route::get('/delete/category/{id}',[CategoryController::class, 'DeleteCategory'])->name('delete.category');
+
 // end category route 
 // all slide route 
 Route::controller(SliderController::class)->group(function(){
@@ -124,6 +126,7 @@ Route::controller(SliderController::class)->group(function(){
   Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
 });
 // end slider route 
+
 // all banner route 
 Route::controller(BannerController::class)->group(function(){
   Route::get('all/banner','AllBanner')->name('all.banner');
@@ -134,6 +137,17 @@ Route::controller(BannerController::class)->group(function(){
   Route::put('/banner/updat','BannerUpdate')->name('banner.update');
   Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
 });
+// all Coupon route state
+Route::controller(CouponController::class)->group(function(){
+  Route::get('all/coupon','AllCoupon')->name('all.coupon');
+
+  Route::get('/add/coupon','AddCoupon')->name('add.coupon');
+  Route::put('/store/coupon','StoreCoupon')->name('coupon.store');
+  Route::get('/edit/coupon/{id}','EditCoupon')->name('edit.coupon');
+  Route::post('/coupon/update','CouponUpdate')->name('coupon.update');
+  Route::get('/delete/coupon/{id}', 'DeleteCoupon')->name('delete.coupon');
+});
+// all Coupon route end
 
 });
   // Sub Category

@@ -120,7 +120,8 @@
                                         <div class="d-flex justify-content-between">
                                             <input class="font-medium mr-15 coupon" name="Coupon"
                                                 placeholder="Enter Your Coupon">
-                                            <button class="btn"><i class="fi-rs-label mr-10"></i>Apply</button>
+                                            <a type="submit" class="btn btn-sussece"><i
+                                                    class="fi-rs-label mr-10"></i>Apply</a>
                                         </div>
                                     </form>
                                 </div>
